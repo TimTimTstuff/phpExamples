@@ -1,0 +1,17 @@
+{
+  "name": "vendor_name/phpex",
+  "description": "description",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Timo Kesselring",
+      "email": "timtimtstuff@gmail.com"
+    }
+  ],
+  "require": {
+  },
+  "require-dev": {
+    "phpunit/phpunit": "8.5.8"
+  }
+}
