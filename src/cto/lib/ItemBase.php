@@ -20,14 +20,14 @@ class ItemBase
     /**
      * @var string
      */
-    protected $preFix = '';
+    protected $attrPrefix = '';
 
     /**
      * @param string $name
      * @param mixed $value
      */
     public function __set($name, $value)
-    {   $name = $this->preFix.$name;
+    {   $name = $this->attrPrefix.$name;
         $this->attributes[$name] = $value;
         $this->changedProperties[$name] = true;
     }
@@ -38,7 +38,7 @@ class ItemBase
      */
     public function __get($name)
     {
-        $name = $this->preFix.$name;
+        $name = $this->attrPrefix.$name;
         return $this->getAttributeValue($name);
     }
 
@@ -52,10 +52,10 @@ class ItemBase
         $this->attributes = $attributes;
 
         if($preFix !== '')
-            $this->preFix = $preFix;
+            $this->attrPrefix = $preFix;
 
         foreach ($attributes as $identifier => $value){
-            $this->changedProperties[$this->preFix.$identifier] = false;
+            $this->changedProperties[$this->attrPrefix.$identifier] = false;
         }
     }
 
@@ -64,7 +64,7 @@ class ItemBase
      * @return bool
      */
     public function propertyHasChanged($propertyName) {
-        $propertyName = $this->preFix.$propertyName;
+        $propertyName = $this->attrPrefix.$propertyName;
         return isset($this->changedProperties[$propertyName]) && $this->changedProperties[$propertyName];
     }
 
@@ -79,7 +79,7 @@ class ItemBase
      * @return string
      */
     public function getPrefix() {
-        return $this->preFix;
+        return $this->attrPrefix;
     }
 
     /**
@@ -87,7 +87,7 @@ class ItemBase
      * @return mixed|null
      */
     public function getAttributeValue($propertyName) {
-        $propertyName = $this->preFix.$propertyName;
+        $propertyName = $this->attrPrefix.$propertyName;
         return isset($this->attributes[$propertyName])?$this->attributes[$propertyName]:null;
     }
 

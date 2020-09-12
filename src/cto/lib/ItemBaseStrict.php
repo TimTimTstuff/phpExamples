@@ -26,14 +26,14 @@ class ItemBaseStrict extends ItemBase
 
     public function __get($name)
     {
-        $name = $this->preFix.$name;
+        $name = $this->attrPrefix.$name;
         if(!array_key_exists($name,self::$meta)) throw new InvalidPropertyException('Property '.$name.' does not exist');
         return parent::__get($name);
     }
 
     public function __set($name, $value)
     {
-        $name = $this->preFix.$name;
+        $name = $this->attrPrefix.$name;
         if(!array_key_exists($name,self::$meta)) throw new InvalidPropertyException('Property '.$name.' does not exist');
         parent::__set($name, $value);
     }
