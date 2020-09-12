@@ -26,15 +26,25 @@ final class CTO_ItemBaseTests extends TestCase
         $person->age = 20;
 
         $this->assertEquals(20, $person->getAttributes()[Person::age]);
-        //print_r($person);
     }
 
-    public function testInitializedObject() {
+    public function testPropertyHasChangedFalse() {
         $person = new Person(array(Person::age=>20, Person::firstName=>'Peter'));
-
-        $this->assertEquals('Peter', $person->firstName);
         $this->assertFalse($person->propertyHasChanged(Person::firstName));
     }
 
+    public function testPropertyHasChangedTrue() {
+        $person = new Person(array(Person::age=>20, Person::firstName=>'Peter'));
+        $person->firstName = 'Not Peter anymore';
+
+        $this->assertTrue($person->propertyHasChanged(Person::firstName));
+    }
+
+    public function testAllChangedPropertiesExist() {
+        $person = new Person([Person::firstName => 'FirstName', Person::lastName => 'LastName', Person::age => '30']);
+        $person->age = 40;
+        $person->firstName = 'NotFirstName';
+        $this->assertEquals([Person::firstName => 'NotFirstName',Person::age => 40], $person->getChangedAttributes());
+    }
 
 }

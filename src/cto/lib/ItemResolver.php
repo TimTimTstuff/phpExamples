@@ -12,6 +12,7 @@ use \Exception;
 class ItemResolver
 {
 
+    //region fields
     /**
      * @var ItemBase
      */
@@ -20,7 +21,9 @@ class ItemResolver
      * @var ItemBase | null
      */
     private $target;
+    //endregion
 
+    //region ctor
     /**
      * ItemResolver constructor.
      * @param ItemBase $pre
@@ -38,13 +41,22 @@ class ItemResolver
         $this->target = $target;
 
     }
+    //endregion
 
+    /**
+     * @param string $identifier
+     * @return bool
+     */
     public function targetHas($identifier)
     {
         if ($this->target === null) return false;
         return isset($this->target->getAttributes()[$identifier]);
     }
 
+    /**
+     * @param string $identifier
+     * @return bool
+     */
     public function preHas($identifier)
     {
         return isset($this->pre->getAttributes()[$identifier]);
@@ -60,7 +72,10 @@ class ItemResolver
         return $this->pre->getAttributeValue($identifier);
     }
 
-
+    /**
+     * @param string $identifier
+     * @return bool
+     */
     public function hasChanged($identifier)
     {
         if ($this->target === null) return false;
@@ -70,16 +85,33 @@ class ItemResolver
     /**
      * @return ItemBase
      */
-    public function getMerged()
+    public function merge()
     {
         if ($this->target === null) return $this->pre;
-        $mergedAttributes = array();
-        $preAttributes = $this->pre->getAttributes();
         $targetAttributes = $this->target->getAttributes();
-        foreach ($preAttributes as $key => $value) {
-            $mergedAttributes[$key] = isset($targetAttributes[$key]) ? $targetAttributes[$key] : $value;
+        $preAttributes = $this->pre->getAttributes();
+        foreach ($targetAttributes as $key => $value) {
+            $preAttributes[$key] = $value;
         }
 
-        return new ItemBase($mergedAttributes);
+        return new ItemBase($preAttributes);
     }
+
+    //region getter
+    /**
+     * @return ItemBase
+     */
+    public function getPre()
+    {
+        return $this->pre;
+    }
+
+    /**
+     * @return ItemBase|null
+     */
+    public function getTarget()
+    {
+        return $this->target;
+    }
+    //endregion
 }
