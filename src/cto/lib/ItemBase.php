@@ -27,9 +27,8 @@ class ItemBase
      * @param mixed $value
      */
     public function __set($name, $value)
-    {   $name = $this->attrPrefix.$name;
-        $this->attributes[$name] = $value;
-        $this->changedProperties[$name] = true;
+    {
+        $this->notifyPropertyHasChanged($name,$value);
     }
 
     /**
@@ -45,18 +44,28 @@ class ItemBase
     /**
      * ItemBase constructor.
      * @param array[string]string $attributes
-     * @param string $preFix
      */
-    function __construct($attributes = array(), $preFix = '')
+    function __construct($attributes = array())
     {
         $this->attributes = $attributes;
 
-        if($preFix !== '')
-            $this->attrPrefix = $preFix;
-
         foreach ($attributes as $identifier => $value){
-            $this->changedProperties[$this->attrPrefix.$identifier] = false;
+            //first add value then mark as false
+            if(property_exists($this,$identifier)) {
+                $this->{$identifier} = $value;
+            }
+            $this->changedProperties[$identifier] = false;
         }
+
+    }
+
+    /**
+     * @param string $name
+     * @param mixed $value
+     */
+    protected function notifyPropertyHasChanged($name, $value) {
+        $this->attributes[$name] = $value;
+        $this->changedProperties[$name] = true;
     }
 
     /**
@@ -64,7 +73,6 @@ class ItemBase
      * @return bool
      */
     public function propertyHasChanged($propertyName) {
-        $propertyName = $this->attrPrefix.$propertyName;
         return isset($this->changedProperties[$propertyName]) && $this->changedProperties[$propertyName];
     }
 
@@ -76,18 +84,10 @@ class ItemBase
     }
 
     /**
-     * @return string
-     */
-    public function getPrefix() {
-        return $this->attrPrefix;
-    }
-
-    /**
      * @param string $propertyName
      * @return mixed|null
      */
     public function getAttributeValue($propertyName) {
-        $propertyName = $this->attrPrefix.$propertyName;
         return isset($this->attributes[$propertyName])?$this->attributes[$propertyName]:null;
     }
 
