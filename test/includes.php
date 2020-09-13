@@ -7,3 +7,4 @@ include '../src/cto/lib/ItemResolver.php';
 
 include '../src/cto/Person.php';
 include '../src/cto/PersonStrict.php';
+include '../src/cto/PersonExplained.php';
