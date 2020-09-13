@@ -38,4 +38,14 @@ class CTO_Misc extends TestCase
         $person->firstName = 'FirstName';
         $this->assertTrue(property_exists($person,'firstName'));
     }
+
+    /**
+     *
+     */
+    public function testIfPropertyExistsOnExplainedObject() {
+
+        $person = new \TStuff\cto\lib\PersonExplained();
+        $person->setFirstName('FirstName');
+        $this->assertTrue(property_exists($person,'firstName'));
+    }
 }
