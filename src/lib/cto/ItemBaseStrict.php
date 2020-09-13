@@ -1,10 +1,10 @@
 <?php
 
 
-namespace TStuff\cto\lib;
+namespace TStuff\lib\cto;
 
 
-use TStuff\Util\PhpDocParser;
+use TStuff\lib\util\PhpDocParser;
 
 /**
  * Extention to ItemBase to have strict property checks

@@ -3,6 +3,11 @@
   "description": "description",
   "minimum-stability": "stable",
   "license": "proprietary",
+  "autoload": {
+    "psr-4": {
+      "TStuff\\": "src"
+    }
+  },
   "authors": [
     {
       "name": "Timo Kesselring",

@@ -1,13 +1,15 @@
 <?php
 
 namespace TStuff\Test;
-include 'includes.php';
-
 use PHPUnit\Framework\TestCase;
-use TStuff\cto\lib\ItemResolver;
-use TStuff\cto\Person;
+use TStuff\impl\cto\Person;
+use TStuff\lib\cto\ItemResolver;
 
-class CTO_ItemResolverTests extends TestCase
+
+
+
+
+class _ItemResolverTests extends TestCase
 {
     public function testItemResolverInitialize()
     {
@@ -38,7 +40,7 @@ class CTO_ItemResolverTests extends TestCase
 
         $resolver = new ItemResolver($personFromDb, $personFromSomeOneChanged);
         /** @var Person $merged */
-        $merged = $resolver->merge();
+        $resolver->merge();
         $this->assertEquals('Peters', $resolver->getPre()->getAttributeValue(Person::lastName));
         $this->assertEquals('NeuerName', $resolver->getTarget()->getAttributeValue(Person::lastName));
 

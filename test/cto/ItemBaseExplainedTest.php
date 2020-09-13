@@ -2,13 +2,11 @@
 
 
 namespace TStuff\Test;
-include 'includes.php';
-
 use PHPUnit\Framework\TestCase;
-use TStuff\cto\lib\PersonExplained;
-use TStuff\cto\Person;
+use TStuff\impl\cto\PersonExplained;
 
-final class CTO_ItemBaseExplainedTests extends TestCase
+
+final class _ItemBaseExplainedTests extends TestCase
 {
     public function testInitializePerson(){
         $person = new PersonExplained();
@@ -24,7 +22,7 @@ final class CTO_ItemBaseExplainedTests extends TestCase
 
     public function testAttributesHasValue() {
         $person = new PersonExplained();
-        $person->age = 20;
+        $person->setAge(20);
 
         $this->assertEquals(20, $person->getAttributes()[PersonExplained::age]);
     }

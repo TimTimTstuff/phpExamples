@@ -2,10 +2,11 @@
 
 
 use PHPUnit\Framework\TestCase;
-use TStuff\cto\Person;
-include 'includes.php';
+use TStuff\impl\cto\Person;
+use TStuff\impl\cto\PersonExplained;
 
-class CTO_Misc extends TestCase
+
+class _Misc extends TestCase
 {
     /**
      *  Solution : ItemBase could have a toJson() / or fromJason (internal array)
@@ -44,7 +45,7 @@ class CTO_Misc extends TestCase
      */
     public function testIfPropertyExistsOnExplainedObject() {
 
-        $person = new \TStuff\cto\lib\PersonExplained();
+        $person = new PersonExplained();
         $person->setFirstName('FirstName');
         $this->assertTrue(property_exists($person,'firstName'));
     }

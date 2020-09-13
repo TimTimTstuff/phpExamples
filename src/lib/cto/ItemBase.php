@@ -1,6 +1,6 @@
 <?php
 
-namespace TStuff\cto\lib;
+namespace TStuff\lib\cto;
 
 /**
  * Provides a trackable

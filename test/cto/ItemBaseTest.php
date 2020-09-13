@@ -2,12 +2,13 @@
 
 
 namespace TStuff\Test;
-include 'includes.php';
-
 use PHPUnit\Framework\TestCase;
-use TStuff\cto\Person;
+use TStuff\impl\cto\Person;
 
-final class CTO_ItemBaseTests extends TestCase
+
+
+
+final class _ItemBaseTests extends TestCase
 {
     public function testInitializePerson(){
         $person = new Person();

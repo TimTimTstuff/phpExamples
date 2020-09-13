@@ -1,8 +1,10 @@
 <?php
 
 
-namespace TStuff\cto\lib;
+namespace TStuff\impl\cto;
 
+
+use TStuff\lib\cto\ItemBase;
 
 class PersonExplained extends ItemBase
 {

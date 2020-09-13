@@ -1,10 +1,10 @@
 <?php
 
 
-namespace TStuff\cto;
+namespace TStuff\impl\cto;
 
 
-use TStuff\cto\lib\ItemBaseStrict;
+use TStuff\lib\cto\ItemBaseStrict;
 
 /**
  * Class PersonStrict

@@ -1,6 +1,6 @@
 <?php
 
-namespace TStuff\Util;
+namespace TStuff\lib\util;
 
 /**
  * Reference to Reflection http://php.net/manual/de/class.reflectionclass.php

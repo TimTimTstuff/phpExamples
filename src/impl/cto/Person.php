@@ -1,8 +1,9 @@
 <?php
 
-namespace TStuff\cto;
+namespace TStuff\impl\cto;
 
-use TStuff\cto\lib\ItemBase;
+
+use TStuff\lib\cto\ItemBase;
 
 /**
  * Class Person

@@ -1,12 +1,11 @@
 <?php
 
 namespace TStuff\Test;
-include 'includes.php';
 use PHPUnit\Framework\TestCase;
-use TStuff\cto\lib\InvalidPropertyException;
-use TStuff\cto\PersonStrict;
+use TStuff\impl\cto\PersonStrict;
+use TStuff\lib\cto\InvalidPropertyException;
 
-class CTO_ItemBaseStrictTests extends TestCase
+class _ItemBaseStrictTests extends TestCase
 {
     public function testItemBaseStrictInitialization() {
         $person = new PersonStrict();
